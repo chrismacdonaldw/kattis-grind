@@ -3,8 +3,15 @@ import os
 import shutil
 import pathlib
 import requests
+import argparse
 
-qid = input('Enter ID: ')
+parser = argparse.ArgumentParser(description='Runs Kattis problem through their test cases')
+parser.add_argument('--id', type=str, default='_NONE_', help='id of problem to fetch')
+args = parser.parse_args()
+qid = args.id
+
+if qid == '_NONE_':
+    qid = input('Enter ID: ')
 qdir = os.getcwd() + '/' + qid
 ilen = int((len([name for name in os.listdir(qdir) if os.path.isfile(os.path.join(qdir, name))]) -1) / 2)
 
