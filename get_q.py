@@ -26,6 +26,8 @@ soup = BeautifulSoup(page.content, 'html.parser')
 tableinp = soup.find_all('table', attrs={'class': 'sample'})
 pathlib.Path(qid).mkdir(parents=True, exist_ok=True)
 
+pathlib.Path(qid + '/' + qid + '.html').write_text(str(soup))
+
 i = 0
 for sample in tableinp:
     tablestd = sample.find_all('pre')
