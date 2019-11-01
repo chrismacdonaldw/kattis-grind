@@ -28,7 +28,7 @@ ID argument is optional, if wanted, you can enter it via the prompt.
 ```
 ./test_y.py --id *problem id*
 ```
-Enter the ID via prompt or optional argument and it will run your code through the test cases and output either PASSED or FAILED for the respective test case. There may be false positives, but I highly doubt it.
+Thanks to [Will Taylor](https://github.com/wtaylor17) for fixing this. Enter the ID via prompt or optional argument and it will run your code through the test cases and output either PASSED or FAILED for the respective test case. There may be false positives, but I highly doubt it.
 
 **Generating N random questions between a difficulty range**
 ```
