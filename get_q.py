@@ -50,3 +50,9 @@ shutil.copy(cpp, dst)
 dstfile = os.path.join(dst,'template.cpp')
 newfile = os.path.join(dst,'_' + qid + '.cpp')
 os.rename(dstfile, newfile)
+
+if not os.path.isfile('./seen.txt'):
+    open('seen.txt', 'w+')
+
+with open('seen.txt','a') as f:
+    f.write(qid + '\n')
