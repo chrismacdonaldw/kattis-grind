@@ -27,8 +27,11 @@ tableinp = soup.find_all('table', attrs={'class': 'sample'})
 pathlib.Path(qid).mkdir(parents=True, exist_ok=True)
 
 htmlfile = soup
-for div in htmlfile.find_all('div', {'class':['wrap', 'description']}): div.decompose()
+for section in htmlfile.find_all('section', {'class': 'box clearfix main-content problem-sidebar'}): section.decompose()
+for div in htmlfile.find_all('div', {'class':['wrap', 'description','footer','problem-download','footer-powered col-md-8']}): div.decompose()
 for img in htmlfile.find_all('img'): img.decompose()
+for a in htmlfile.find_all('a'): a.decompose()
+
 pathlib.Path(qid + '/' + qid + '.html').write_text(str(htmlfile))
 
 i = 0
