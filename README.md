@@ -1,6 +1,6 @@
 # Kattis-Grind Setup
 A grind setup for the competitive programming website [Kattis](https://open.kattis.com). Can grab questions with specific ID's and can even fetch N amount of questions within a specified difficulty range.
-As a note, this does utilize web scraping. If this is against Kattis terms of service, please notify me and I will take it down immediately.
+As a note, this does utilize web scraping. 
 These scripts can be utilized to simulate a tournament environment where you may want to generate a random amount of questions between a set range of difficulty.
 
 ### Prerequisites
