@@ -28,7 +28,7 @@ ID argument is optional, if wanted, you can enter it via the prompt.
 ```
 ./test_y.py --id *problem id*
 ```
-Thanks to [Will Taylor](https://github.com/wtaylor17) for fixing this. Enter the ID via prompt or optional argument and it will run your code through the test cases and output either PASSED or FAILED for the respective test case. There may be false positives, but I highly doubt it.
+Enter the ID via prompt or optional argument and it will run your code through the test cases and output either PASSED or FAILED for the respective test case. There may be false positives, but I highly doubt it.
 
 **Generating N random questions between a difficulty range**
 ```
@@ -47,3 +47,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 * Thanks to [JarateKing](https://github.com/JarateKing) and [Ben Boyle](https://github.com/benbdevd) for the original grinding idea.
+* Thanks to [Will Taylor](https://github.com/wtaylor17) for fixing test_q.py to work on Windows machines.
