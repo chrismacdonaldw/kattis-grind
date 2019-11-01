@@ -15,7 +15,6 @@ parser.add_argument('--upbound', type=float, default=None, help='the upper bound
 parser.add_argument('--qamount', type=int, default=None, help='the amount of questions wanted to fetch')
 
 args = parser.parse_args()
-qid = args.id
 lobound = args.lobound
 upbound = args.upbound
 n = args.qamount
