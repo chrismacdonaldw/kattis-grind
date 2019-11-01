@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import shutil
 import pathlib
 import requests
@@ -19,7 +20,10 @@ os.system('g++ ' + qdir + '/_' + qid + '.cpp')
 
 for i in range(ilen):
     print('TEST CASE ' + str(i+1))
-    output = os.popen('cat ' + qdir + '/input' + str(i+1) + ' | ./a.out').read().rstrip()
+    if sys.platform.startswith('win'):
+        output = os.popen('type ' + qdir + '/input' + str(i+1) + ' | ./a.out').read().rstrip()
+    else:
+        output = os.popen('cat ' + qdir + '/input' + str(i+1) + ' | ./a.out').read().rstrip()
     if output == open(qdir + '/output' + str(i+1)).read().rstrip():
         print('PASSED')
     else:
