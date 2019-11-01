@@ -17,9 +17,19 @@ qid = args.id
 if qid == '_NONE_':
     qid = input('Enter ID: ')
 qdir = os.path.join(os.getcwd(),qid)
+
+qext = 'z'
+while qext != 'c' and qext != 'p':
+    qext = input('Which language (py/cpp): ')
+    qext = qext[:1].lower()
+
+if qext == 'p':
+    EXE_NAME = '%s/_%s.py'%(qdir,qid)
+
 isinfile_inqdir = lambda name: name.startswith("input") and os.path.isfile(os.path.join(qdir,name))
 input_files = list(filter(isinfile_inqdir, os.listdir(qdir)))
 ilen = len(input_files)
+
 os.system('g++ \"' + qdir + '/_' + qid + '.cpp\"')
 
 for i in range(ilen):
