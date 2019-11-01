@@ -26,7 +26,10 @@ soup = BeautifulSoup(page.content, 'html.parser')
 tableinp = soup.find_all('table', attrs={'class': 'sample'})
 pathlib.Path(qid).mkdir(parents=True, exist_ok=True)
 
-pathlib.Path(qid + '/' + qid + '.html').write_text(str(soup))
+htmlfile = soup
+for div in htmlfile.find_all('div', {'class':['wrap', 'description']}): div.decompose()
+for img in htmlfile.find_all('img'): img.decompose()
+pathlib.Path(qid + '/' + qid + '.html').write_text(str(htmlfile))
 
 i = 0
 for sample in tableinp:
