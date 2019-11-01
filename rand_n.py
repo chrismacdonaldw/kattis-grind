@@ -10,7 +10,6 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
 parser = argparse.ArgumentParser(description='Runs Kattis problem through their test cases')
-parser.add_argument('--id', type=str, default='_NONE_', help='id of problem to fetch')
 parser.add_argument('--lobound', type=float, default=None, help='the lower bound for questions')
 parser.add_argument('--upbound', type=float, default=None, help='the upper bound for questions')
 parser.add_argument('--qamount', type=int, default=None, help='the amount of questions wanted to fetch')
