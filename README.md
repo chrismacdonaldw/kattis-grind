@@ -14,6 +14,7 @@ The folder requires full read and write permissions, so on Linux just
 ```
 chmod 777 -R *sourcefolder*
 ```
+There may be some difficulties running Python code through test_q.py on Linux. This is due to read and write permissions. You can bypass with the above command every time a question is generated for now, until it is fixed.
 
 ### Usage
 It's pretty intuitive and obvious in use, but here are examples.
