@@ -73,7 +73,5 @@ if not os.path.isfile('./seen.txt'):
     open('seen.txt', 'w+')
 
 for j in range(min(n,len(qlist))):
-    with open('seen.txt','a') as f:
-        f.write(qlist[j] + '\n')
     os.popen(os.getcwd() + '/get_q.py --id ' + qlist[j])
 
