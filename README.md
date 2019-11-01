@@ -32,7 +32,7 @@ Enter the ID via prompt or optional argument and it will run your code through t
 
 **Generating N random questions between a difficulty range**
 ```
-./rand_n.py
+./rand_n.py --lobound *lower bound* --upbound *upper bound* --qamount *amount of questions*
 ```
 You will be prompted for a lower bound (1.2 is the lowest, but it doesn't matter what you put here).
 
