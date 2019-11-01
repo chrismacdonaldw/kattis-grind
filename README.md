@@ -34,9 +34,12 @@ Doesn't have an ID argument just yet, but enter the ID via prompt and it will ru
 ```
 ./rand_n.py
 ```
-You will be prompted for a lower bound (1.2 is the lowest, but it doesn't matter what you put here)
-You will be prompted for an upper bound (Upper bound max is 10)
+You will be prompted for a lower bound (1.2 is the lowest, but it doesn't matter what you put here).
+
+You will be prompted for an upper bound (Upper bound max is 10).
+
 You will be prompted for n, how many questions you want to generate.
+
 Once the questions are selected, they are shuffled, randomly selected and added to a textfile called seen.txt. This is so that the same questions may not be selected a second time. If you want it generated again, simply erase it's line from the text file.
 
 ## License
