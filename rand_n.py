@@ -4,20 +4,34 @@ import shutil
 import random
 import pathlib
 import requests
+import argparse
 import subprocess
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
-lobound = 1
-upbound = 0
-while lobound > upbound:
+parser = argparse.ArgumentParser(description='Runs Kattis problem through their test cases')
+parser.add_argument('--id', type=str, default='_NONE_', help='id of problem to fetch')
+parser.add_argument('--lobound', type=float, default=None, help='the lower bound for questions')
+parser.add_argument('--upbound', type=float, default=None, help='the upper bound for questions')
+parser.add_argument('--qamount', type=int, default=None, help='the amount of questions wanted to fetch')
+
+args = parser.parse_args()
+qid = args.id
+lobound = args.lobound
+upbound = args.upbound
+n = args.qamount
+
+if lobound is None:
     lobound = float(input('Enter lower bound: '))
+
+if upbound is None:
     upbound = float(input('Enter upper bound: '))
 
 if lobound > 10 or upbound > 10:
     exit(0)
 
-n = int(input('How many questions: '))
+if n is None:
+    n = int(input('How many questions: '))
 
 seenlist = []
 if os.path.isfile('./seen.txt'):
