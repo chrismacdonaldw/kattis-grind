@@ -26,13 +26,13 @@ ID argument is optional, if wanted, you can enter it via the prompt.
 
 **Testing a question**
 ```
-./test_y.py
+./test_y.py --id *problem id*
 ```
 Enter the ID via prompt or optional argument and it will run your code through the test cases and output either PASSED or FAILED for the respective test case. There may be false positives, but I highly doubt it.
 
 **Generating N random questions between a difficulty range**
 ```
-./rand_n.py --id *problem id*
+./rand_n.py
 ```
 You will be prompted for a lower bound (1.2 is the lowest, but it doesn't matter what you put here).
 
