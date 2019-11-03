@@ -33,7 +33,7 @@ if n is None:
 
 seenlist = []
 if os.path.isfile('./seen.txt'):
-    seenlist = [line.rstrip('\n') for line in open(os.getcwd() + '/seen.txt')]
+    seenlist = [line.rstrip('\n') for line in open('/' + os.getcwd() + '/seen.txt')]
 qlist = []
 end = False
 i = 0
@@ -70,5 +70,5 @@ while end is False:
 random.shuffle(qlist)
 
 for j in range(min(n,len(qlist))):
-    os.popen(os.getcwd() + '/get_q.py --id ' + qlist[j])
+    os.popen('/' + os.getcwd() + '/get_q.py --id ' + qlist[j])
 
