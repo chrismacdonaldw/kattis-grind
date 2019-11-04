@@ -3,7 +3,7 @@ A grind setup for the competitive programming website [Kattis](https://open.katt
 As a note, this does utilize web scraping. 
 These scripts can be utilized to simulate a tournament environment where you may want to generate a random amount of questions between a set range of difficulty.
 
-### Prerequisites
+## Prerequisites
 It uses Python3.7.3 so there are some modules you will need.
 Some pip3 modules you need to install
 ```
@@ -16,7 +16,7 @@ chmod 777 -R *sourcefolder*
 ```
 There may be some difficulties running Python code through test_q.py on Linux. This is due to read and write permissions. You can bypass with the above command every time a question is generated for now, until it is fixed.
 
-### Usage
+## Usage
 It's pretty intuitive and obvious in use, but here are examples.
 
 **Fetching a question**
@@ -43,7 +43,7 @@ You will be prompted for n, how many questions you want to generate.
 
 Once the questions are selected, they are shuffled, randomly selected and added to a textfile called seen.txt. This is so that the same questions may not be selected a second time. If you want it generated again, simply erase it's line from the text file.
 
-### Current Bugs
+## Current Bugs
 Currently, Windows seems to have some trouble with encoding characters and Python crashes as a result of trying to save HTML files without proper encoding. This does not occur on Linux. Be wary of questions with foreign characters in them, for example: ő
 
 ## License
