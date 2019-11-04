@@ -43,6 +43,9 @@ You will be prompted for n, how many questions you want to generate.
 
 Once the questions are selected, they are shuffled, randomly selected and added to a textfile called seen.txt. This is so that the same questions may not be selected a second time. If you want it generated again, simply erase it's line from the text file.
 
+### Current Bugs
+Currently, Windows seems to have some trouble with encoding characters and Python crashes as a result of trying to save HTML files without proper encoding. This does not occur on Linux. Be wary of questions with foreign characters in them, for example: ő
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
