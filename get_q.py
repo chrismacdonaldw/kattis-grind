@@ -9,7 +9,9 @@ from fake_useragent import UserAgent
 
 parser = argparse.ArgumentParser(description='Fetches random Kattis Questions')
 parser.add_argument('--id', type=str, default='_NONE_', help='id of problem to fetch')
+parser.add_argument('--hint', type=bool, default=False, help='includes hint from Steve Halim.')
 args = parser.parse_args()
+hint = parser.parse_args()
 qid = args.id
 
 if qid == '_NONE_':
@@ -18,10 +20,25 @@ if os.path.isdir('./' + qid):
     print('This problem already exists.')
     exit(1)
 url = 'http://open.kattis.com/problems/' + qid
+sth = 'https://cpbook.net/methodstosolve?oj=kattis&topic=all&quality=all'
 usa = UserAgent()
 
 page = requests.get(url, headers={'User-Agent':str(usa.random)})
 soup = BeautifulSoup(page.content, 'html.parser')
+
+
+hinttype = ""
+hinttext = ""
+if hint:
+    hintpage = requests.get(sth, headers={'User-Agent': str(usa.random)})
+    pars = BeautifulSoup(hintpage.content, 'html.parser')
+    hintinp = pars.find_all('tr', attrs={'class': ['Kattis starred','Kattis nonstarred']})
+    for hinter in hintinp:
+        td = hinter.find_all('td')
+        if td[0].text == qid:
+            hinttype = td[2].text
+            hinttext = td[3].text
+            break
 
 tableinp = soup.find_all('table', attrs={'class': 'sample'})
 pathlib.Path(qid).mkdir(parents=True, exist_ok=True)
@@ -31,6 +48,14 @@ for section in htmlfile.find_all('section', {'class': 'box clearfix main-content
 for div in htmlfile.find_all('div', {'class':['wrap', 'description','footer','problem-download','footer-powered col-md-8']}): div.decompose()
 for img in htmlfile.find_all('img'): img.decompose()
 for a in htmlfile.find_all('a'): a.decompose()
+
+if hint:
+    hinttype_p = htmlfile.new_tag('p')
+    hinttype_p.string = 'Type: %s'%hinttype
+    hinttext_p = htmlfile.new_tag('p')
+    hinttext_p.string = 'Hint: %s'%hinttext
+    htmlfile.html.append(hinttype_p)
+    htmlfile.html.append(hinttext_p)
 
 pathlib.Path(qid + '/' + qid + '.html').write_text(str(htmlfile))
 
