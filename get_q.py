@@ -11,8 +11,8 @@ parser = argparse.ArgumentParser(description='Fetches random Kattis Questions')
 parser.add_argument('--id', type=str, default='_NONE_', help='id of problem to fetch')
 parser.add_argument('--hint', type=bool, default=False, help='includes hint from Steve Halim.')
 args = parser.parse_args()
-hint = parser.parse_args()
 qid = args.id
+hint = args.hint
 
 if qid == '_NONE_':
     qid = input('Enter ID: ')
