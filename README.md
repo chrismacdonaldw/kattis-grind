@@ -58,5 +58,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 
 # Acknowledgments
 * Thanks to [JarateKing](https://github.com/JarateKing) and [Ben Boyle](https://github.com/benbdevd) for the original grinding idea.
-* Thanks to [Will Taylor](https://github.com/wtaylor17) for fixing test_q.py to work on Windows machines.
+* Thanks to [Will Taylor](https://github.com/wtaylor17) for fixing test.py to work on Windows machines.
 * Thanks to the UPEI SMCSS for all the motivation!!!
