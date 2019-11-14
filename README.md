@@ -1,47 +1,54 @@
-# Kattis-Grind Setup
-A grind setup for the competitive programming website [Kattis](https://open.kattis.com). Can grab questions with specific ID's and can even fetch N amount of questions within a specified difficulty range.
-As a note, this does utilize web scraping. 
-These scripts can be utilized to simulate a tournament environment where you may want to generate a random amount of questions between a set range of difficulty.
+# Kattis Grind
+A small easy-to-use package of Python 3 scripts which can help speed up the process for competitive programming on [Kattis](https://open.kattis.com). The scripts will download a local copy of the question, and can automate testing inputs / outputs.
 
-## Prerequisites
-It uses Python3.7.3 so there are some modules you will need.
-Some pip3 modules you need to install
+# Requirements
+Kattis Grind uses Python 3. To check if you have it:
+```console
+foo@bar:~$ python3 --version
+Python 3.7.3
 ```
-BeautifulSoup4
-fake-useragent
-```
-The folder requires full read and write permissions, so on Linux just 
-```
-chmod 777 -R *sourcefolder*
-```
-There may be some difficulties running Python code through test_q.py on Linux. This is due to read and write permissions. You can bypass with the above command every time a question is generated for now, until it is fixed.
+If you don't have Python 3, you can install it from the [Python Website](https://www.python.org/downloads/).
 
-## Usage
-It's pretty intuitive and obvious in use, but here are examples.
-
-**Fetching a question**
+The Kattis Grind setup requires two modules. To install them:
+```console
+foo@bar:~$ pip3 install bs4
+foo@bar:~$ pip3 install fake-useragent
 ```
-./get_q.py --id *problem id*
+## How do I use it?
+### Fetch a question!
+Simple! If you wanted to fetch a question, you can simply run
+```console
+foo@bar:~/kattis-grind$ ./get_q.py
+Enter ID:
 ```
-ID argument is optional, if wanted, you can enter it via the prompt.
-
-**Testing a question**
+If you prefer to use command line arguments instead, you can! For example, if I wanted to get question 'hello':
+```console
+foo@bar:~/kattis-grind$ ./get_q.py --id hello
 ```
-./test_y.py --id *problem id*
+
+### Test your solution!
+The useful feature for Kattis Grind is that you can easily test your solutions! To do so:
+```console
+foo@bar:~/kattis-grind$ ./test_q.py
+Enter ID:
 ```
-Enter the ID via prompt or optional argument and it will run your code through the test cases and output either PASSED or FAILED for the respective test case. There may be false positives, but I highly doubt it.
-
-**Generating N random questions between a difficulty range**
+Similarly to fetching a question, you can pass in an optional ID argument! Using 'hello' as an example again:
+```console
+foo@bar:~/kattis-grind$ ./test_q.py --id hello
 ```
-./rand_n.py --lobound *lower bound* --upbound *upper bound* --qamount *amount of questions*
+### Generating random questions!
+The best feature of this program is that you can fetch random questions from Kattis too! If I was interested in five questions between a range of 1.4 to 1.6, I can run the script like this:
+```console
+foo@bar:~/kattis-grind$ ./rand_n.py
+Enter lower bound: 1.4
+Enter upper bound: 1.6
+How many questions: 5
 ```
-You will be prompted for a lower bound (1.2 is the lowest, but it doesn't matter what you put here).
-
-You will be prompted for an upper bound (Upper bound max is 10).
-
-You will be prompted for n, how many questions you want to generate.
-
-Once the questions are selected, they are shuffled, randomly selected and added to a textfile called seen.txt. This is so that the same questions may not be selected a second time. If you want it generated again, simply erase it's line from the text file.
+It's as simple as that! But as you may have guessed, there are optional command line arguments for these too! Although they're less useful, you can use them like this:
+```console
+foo@bar:~/kattis-grind$ ./rand_n.py --lobound 1.4 --upbound 1.6 --qamount 5
+```
+Depending on how many questions you want, and what range they're between, this operation *may* take several seconds (sometimes a good 10 - 40 seconds!!). Keep in mind that while it takes long, it definitely works!
 
 ## Current Bugs
 Currently, Windows seems to have some trouble with encoding characters and Python crashes as a result of trying to save HTML files without proper encoding. This does not occur on Linux. Be wary of questions with foreign characters in them, for example: ő
@@ -52,3 +59,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 ## Acknowledgments
 * Thanks to [JarateKing](https://github.com/JarateKing) and [Ben Boyle](https://github.com/benbdevd) for the original grinding idea.
 * Thanks to [Will Taylor](https://github.com/wtaylor17) for fixing test_q.py to work on Windows machines.
+* Thanks to the UPEI SMCSS for all the motivation!!!
