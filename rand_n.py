@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 import os
+import sys
 import shutil
 import random
 import pathlib
 import requests
 import argparse
 import subprocess
-from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    sys.exit("""You need BeautifulSoup. run \'pip install bs4\'""")
+
+try:
+    from fake_useragent import UserAgent
+except ImportError:
+    sys.exit("""You need UserAgent. run \'pip install fake-useragent\'""")
 
 parser = argparse.ArgumentParser(description='Runs Kattis problem through their test cases')
 parser.add_argument('--lobound', type=float, default=None, help='the lower bound for questions')

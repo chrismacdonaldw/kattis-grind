@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 import os
+import sys
 import shutil
 import pathlib
 import requests
 import argparse
-from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    sys.exit("""You need BeautifulSoup. run \'pip install bs4\'""")
+
+try:
+    from fake_useragent import UserAgent
+except ImportError:
+    sys.exit("""You need UserAgent. run \'pip install fake-useragent\'""")
 
 parser = argparse.ArgumentParser(description='Fetches random Kattis Questions')
 parser.add_argument('--id', type=str, default='_NONE_', help='id of problem to fetch')
