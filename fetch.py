@@ -94,9 +94,11 @@ dstfile = os.path.join(dst,'template.cpp')
 newfile = os.path.join(dst,'_' + qid + '.cpp')
 os.rename(dstfile, newfile)
 
-with open('/' + os.getcwd() + '/' + PROBLEM_PATH + '/_' + qid + '.py', 'w+') as py:
-    py.write('#!/usr/bin/env python3\n')
-    os.chmod('/' + os.getcwd() + '/' + PROBLEM_PATH + '/_' + qid + '.py', 0o777)
+python_file_path = (PROBLEM_PATH + '/_' + qid + '.py')
+
+with open(python_file_path, 'w+') as python_file:
+    python_file.write('#!/usr/bin/env python3\n')
+    os.chmod(python_file_path, 0o777)
 
 if not os.path.isfile('./seen.txt'):
     open('seen.txt', 'w+')
