@@ -32,7 +32,7 @@ isinfile_inqdir = lambda name: name.startswith("input") and os.path.isfile(os.pa
 input_files = list(filter(isinfile_inqdir, os.listdir(qdir)))
 ilen = len(input_files)
 
-os.system('g++ "' + qdir + '/_' + qid + '.cpp" -o ' + qdir + '/' + qid)
+os.system('g++ "' + qdir + '/_' + qid + '.cpp" -o ' + EXE_NAME)
 
 for i in range(ilen):
     print('TEST CASE ' + str(i+1))
