@@ -4,7 +4,6 @@ import sys
 import argparse
 
 ISON_WINDOWS = sys.platform == 'win32'
-EXE_NAME = 'a' if ISON_WINDOWS else './a.out'
 WRITER_NAME = 'type' if ISON_WINDOWS else 'cat'
 parser = argparse.ArgumentParser(description='Runs Kattis problem through their test cases')
 parser.add_argument('--id', type=str, default='_NONE_', help='id of problem to fetch')
