@@ -17,7 +17,7 @@ if qid == '_NONE_':
 PROBLEMS_PATH = './problems/'
 PROBLEM_PATH = PROBLEMS_PATH + qid
 
-qdir = os.path.join(os.getcwd(), PROBLEM_PATH)
+qdir = os.path.join(PROBLEM_PATH)
 
 qext = 'z'
 while qext != 'c' and qext != 'p':
