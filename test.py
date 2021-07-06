@@ -26,12 +26,14 @@ while qext != 'c' and qext != 'p':
 
 if qext == 'p':
     EXE_NAME = '%s/_%s.py'%(qdir,qid)
+else:
+    EXE_NAME = '%s/_%s.exe'%(qdir,qid) if ISON_WINDOWS else '%s/_%s'%(qdir,qid)
 
 isinfile_inqdir = lambda name: name.startswith("input") and os.path.isfile(os.path.join(qdir,name))
 input_files = list(filter(isinfile_inqdir, os.listdir(qdir)))
 ilen = len(input_files)
 
-os.system('g++ \"' + qdir + '/_' + qid + '.cpp\"')
+os.system('g++ "' + qdir + '/_' + qid + '.cpp" -o ' + qdir + '/' + qid)
 
 for i in range(ilen):
     print('TEST CASE ' + str(i+1))
