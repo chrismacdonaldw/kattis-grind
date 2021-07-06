@@ -13,7 +13,11 @@ qid = args.id
 
 if qid == '_NONE_':
     qid = input('Enter ID: ')
-qdir = os.path.join(os.getcwd(),qid)
+
+PROBLEMS_PATH = './problems/'
+PROBLEM_PATH = PROBLEMS_PATH + qid
+
+qdir = os.path.join(os.getcwd(), PROBLEM_PATH)
 
 qext = 'z'
 while qext != 'c' and qext != 'p':

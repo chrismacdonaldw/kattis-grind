@@ -30,7 +30,11 @@ hint = args.hint
 
 if qid == '_NONE_':
     qid = input('Enter ID: ')
-if os.path.isdir('./' + qid):
+
+PROBLEMS_PATH = './problems/'
+PROBLEM_PATH = PROBLEMS_PATH + qid
+
+if os.path.isdir(PROBLEM_PATH + qid):
     print('This problem already exists.')
     exit(1)
 url = 'http://open.kattis.com/problems/' + qid
@@ -55,7 +59,7 @@ if hint:
             break
 
 tableinp = soup.find_all('table', attrs={'class': 'sample'})
-pathlib.Path(qid).mkdir(parents=True, exist_ok=True)
+pathlib.Path(PROBLEM_PATH).mkdir(parents=True, exist_ok=True)
 
 htmlfile = soup
 for section in htmlfile.find_all('section', {'class': 'box clearfix main-content problem-sidebar'}): section.decompose()
@@ -71,17 +75,17 @@ if hint:
     htmlfile.html.append(hinttype_p)
     htmlfile.html.append(hinttext_p)
 
-pathlib.Path(qid + '/' + qid + '.html').write_text(str(htmlfile))
+pathlib.Path(PROBLEM_PATH + '/' + qid + '.html').write_text(str(htmlfile))
 
 i = 0
 for sample in tableinp:
     tablestd = sample.find_all('pre')
-    pathlib.Path(qid + '/input' + str(i + 1)).write_text(tablestd[0].text)
-    pathlib.Path(qid + '/output' + str(i + 1)).write_text(tablestd[1].text)
+    pathlib.Path(PROBLEM_PATH + '/input' + str(i + 1)).write_text(tablestd[0].text)
+    pathlib.Path(PROBLEM_PATH + '/output' + str(i + 1)).write_text(tablestd[1].text)
     i += 1
 
 src = os.curdir
-dst = os.path.join(src, qid)
+dst = os.path.join(src, PROBLEM_PATH)
 cpp = os.path.join(src, 'template.cpp')
 
 shutil.copy(cpp, dst)
@@ -90,9 +94,9 @@ dstfile = os.path.join(dst,'template.cpp')
 newfile = os.path.join(dst,'_' + qid + '.cpp')
 os.rename(dstfile, newfile)
 
-with open('/' + os.getcwd() + '/' + qid + '/_' + qid + '.py', 'w+') as py:
+with open('/' + os.getcwd() + '/' + PROBLEM_PATH + '/_' + qid + '.py', 'w+') as py:
     py.write('#!/usr/bin/env python3\n')
-    os.chmod('/' + os.getcwd() + '/' + qid + '/_' + qid + '.py', 0o777)
+    os.chmod('/' + os.getcwd() + '/' + PROBLEM_PATH + '/_' + qid + '.py', 0o777)
 
 if not os.path.isfile('./seen.txt'):
     open('seen.txt', 'w+')
