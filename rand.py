@@ -65,7 +65,11 @@ while end is False:
 
     for tr in questions:
         tds = tr.find_all('td')
-        diff = float(tds[8].text)
+        
+        try:
+            diff = float(tds[8].text)
+        except ValueError:
+            continue
 
         if diff > upbound:
             end = True
