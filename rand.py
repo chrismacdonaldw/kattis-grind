@@ -81,4 +81,3 @@ random.shuffle(qlist)
 
 for j in range(min(n,len(qlist))):
     os.popen('/' + os.getcwd() + '/fetch.py --id ' + qlist[j])
-
