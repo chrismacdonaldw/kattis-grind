@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 import os
 import sys
-import shutil
 import random
-import pathlib
-import requests
 import argparse
-import subprocess
+
+try:
+    import requests
+except ImportError:
+    sys.exit("You need requests. run 'pip install requests'")
+
 try:
     from bs4 import BeautifulSoup
 except ImportError:
-    sys.exit("""You need BeautifulSoup. run \'pip install bs4\'""")
+    sys.exit("You need BeautifulSoup. run 'pip install bs4'")
 
 try:
     from fake_useragent import UserAgent
 except ImportError:
-    sys.exit("""You need UserAgent. run \'pip install fake-useragent\'""")
+    sys.exit("You need UserAgent. run 'pip install fake-useragent'")
 
 parser = argparse.ArgumentParser(description='Runs Kattis problem through their test cases')
 parser.add_argument('--lobound', type=float, default=None, help='the lower bound for questions')
@@ -63,7 +65,11 @@ while end is False:
 
     for tr in questions:
         tds = tr.find_all('td')
-        diff = float(tds[8].text)
+        
+        try:
+            diff = float(tds[8].text)
+        except ValueError:
+            continue
 
         if diff > upbound:
             end = True
@@ -79,4 +85,3 @@ random.shuffle(qlist)
 
 for j in range(min(n,len(qlist))):
     os.popen('/' + os.getcwd() + '/fetch.py --id ' + qlist[j])
-

@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 import os
 import sys
-import shutil
-import pathlib
-import requests
 import argparse
 
 ISON_WINDOWS = sys.platform == 'win32'
-EXE_NAME = 'a' if ISON_WINDOWS else './a.out'
 WRITER_NAME = 'type' if ISON_WINDOWS else 'cat'
 parser = argparse.ArgumentParser(description='Runs Kattis problem through their test cases')
 parser.add_argument('--id', type=str, default='_NONE_', help='id of problem to fetch')
@@ -16,7 +12,11 @@ qid = args.id
 
 if qid == '_NONE_':
     qid = input('Enter ID: ')
-qdir = os.path.join(os.getcwd(),qid)
+
+PROBLEMS_PATH = './problems/'
+PROBLEM_PATH = PROBLEMS_PATH + qid
+
+qdir = os.path.join(PROBLEM_PATH)
 
 qext = 'z'
 while qext != 'c' and qext != 'p':
@@ -25,12 +25,14 @@ while qext != 'c' and qext != 'p':
 
 if qext == 'p':
     EXE_NAME = '%s/_%s.py'%(qdir,qid)
+else:
+    EXE_NAME = '%s/_%s.exe'%(qdir,qid) if ISON_WINDOWS else '%s/_%s'%(qdir,qid)
 
 isinfile_inqdir = lambda name: name.startswith("input") and os.path.isfile(os.path.join(qdir,name))
 input_files = list(filter(isinfile_inqdir, os.listdir(qdir)))
 ilen = len(input_files)
 
-os.system('g++ \"' + qdir + '/_' + qid + '.cpp\"')
+os.system('g++ "' + qdir + '/_' + qid + '.cpp" -o ' + EXE_NAME)
 
 for i in range(ilen):
     print('TEST CASE ' + str(i+1))
