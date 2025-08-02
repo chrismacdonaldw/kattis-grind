@@ -230,14 +230,6 @@ kattis_problems/
     └── twostones.cpp
 ```
 
-## Templates
-
-The tool includes default templates for supported languages and allows you to specify custom templates in your configuration file. Templates are automatically generated when fetching problems.
-
-### Default Templates Location
-- `templates/python_default.py`
-- `templates/cpp_default.cpp`
-
 ## Acknowledgments
 
 This project uses the [official Kattis CLI](https://github.com/Kattis/kattis-cli) as a starting point. The original Kattis CLI provided the foundation for understanding the Kattis API and submission process.
