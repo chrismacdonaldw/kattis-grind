@@ -201,11 +201,6 @@ When enabled, the tool will display hints like:
 - **Problem Type**: Classification (e.g., "1.4a, One-Liner I/O")
 - **Hint Text**: Solving strategy (e.g., "just print 'Hello World!'")
 
-This feature helps you:
-- Understand what type of problem you're solving
-- Get hints about the approach or algorithm needed
-- Learn problem classification for competitive programming
-
 ### Environment Variables
 
 - `KATTIS_GRIND_HOME`: Override the default configuration directory
