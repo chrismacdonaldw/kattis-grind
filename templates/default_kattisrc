@@ -1,0 +1,55 @@
+# Kattis CLI configuration file
+# You can get your token by downloading the .kattisrc file from
+# your Kattis profile page: https://<hostname>/downloads/kattisrc
+#
+# Configuration Search Order:
+# 1. $KATTIS_GRIND_HOME/.kattisrc (if KATTIS_GRIND_HOME environment variable is set)
+# 2. ~/.kattisrc (home directory)
+# 3. ./.kattisrc (current directory)
+# 4. ../.kattisrc (parent directory)
+# 5. ~/.kattis-grind/.kattisrc (default kattis-grind config directory)
+#
+# Set KATTIS_GRIND_HOME environment variable to customize the location:
+# export KATTIS_GRIND_HOME=/path/to/your/kattis/workspace
+
+[user]
+username = YOUR_USERNAME_HERE
+token = YOUR_TOKEN_HERE
+
+[kattis]
+hostname = open.kattis.com
+loginurl = https://open.kattis.com/login
+submissionurl = https://open.kattis.com/submit
+
+[settings]
+# Preferred programming languages (comma-separated)
+# Available: python, cpp, java, c, go, rust, ruby, kotlin, scala, swift, haskell, c#, bash, javascript
+languages = python,cpp
+
+# Difficulty range for random problem selection (min-max)
+difficulty = 1.5-3.0
+
+# Directory where problems will be saved (supports ~ for home directory)
+# Examples: kattis_problems, ~/competitive_programming/kattis, /path/to/solutions
+problems_directory = kattis_problems
+
+# Whether to fetch hints from Steve Halim's cpbook.net site
+# Set to true to include problem type and hint information in problem descriptions
+include_hints = false
+# Optional scraper settings (defaults shown):
+# scraper_timeout = 10
+# scraper_max_retries = 3
+# scraper_backoff_factor = 0.5
+
+[templates]
+# Configure your own custom template files for each language.
+# Templates are used when fetching problems to create starter files.
+# 
+# Setup Instructions:
+# 1. Create a directory for your templates (e.g., ~/kattis_templates/)
+# 2. Create template files for each language you use
+# 3. Uncomment and update the paths below
+#
+# Template Examples:
+# cpp = ~/.kattis-grind/templates/cpp_template.cpp
+# py = ~/.kattis-grind/templates/py_template.py
