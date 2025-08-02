@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE & Editors
+.vscode/
+!.vscode/launch.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*~
+
+# Project-specific
+kattis_problems/
+*.kattisrc
+.kattisrc
+testing
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Backup files
+*.bak
+*.backup
+*.old
