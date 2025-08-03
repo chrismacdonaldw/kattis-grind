@@ -3,6 +3,7 @@ import dataclasses
 import os
 from pathlib import Path
 from typing import Set, Dict, Optional
+import typer
 import constants
 
 
@@ -87,18 +88,20 @@ def load_config() -> KattisConfig:
             break
 
     if not config_found:
-        print(
-            f"{constants.Messages.ERROR_PREFIX} {constants.Messages.CONFIG_NOT_FOUND}"
+        typer.secho(
+            f"{constants.Messages.ERROR_PREFIX} {constants.Messages.CONFIG_NOT_FOUND}",
+            fg=typer.colors.RED,
         )
-        print("Searched in:")
+        typer.echo("Searched in:")
         for path in config_paths:
-            print(f"  - {path}")
-        print(
+            typer.echo(f"  - {path}")
+        typer.echo(
             "Please run 'kattis-grind config init' to create one or download from Kattis."
         )
         if constants.KATTIS_GRIND_HOME_ENV not in os.environ:
-            print(
-                f"Tip: You can set {constants.KATTIS_GRIND_HOME_ENV} environment variable to specify a custom location."
+            typer.secho(
+                f"Tip: You can set {constants.KATTIS_GRIND_HOME_ENV} environment variable to specify a custom location.",
+                fg=typer.colors.YELLOW,
             )
         raise FileNotFoundError
 
@@ -210,7 +213,7 @@ def create_default_config():
     """Creates a default .kattisrc file if one doesn't exist."""
     CONFIG_DIR.mkdir(exist_ok=True)
     if CONFIG_PATH.exists():
-        print(f"'{CONFIG_PATH}' already exists. Doing nothing.")
+        typer.secho(f"'{CONFIG_PATH}' already exists. Doing nothing.", fg=typer.colors.YELLOW)
         return
 
     template_path = Path(__file__).parent / "templates" / "default_kattisrc"
@@ -218,8 +221,8 @@ def create_default_config():
     try:
         default_config_text = template_path.read_text(encoding="utf-8")
     except (IOError, UnicodeDecodeError) as e:
-        print(f"Error reading default config template: {e}")
-        print("Creating a minimal config file instead.")
+        typer.secho(f"Error reading default config template: {e}", fg=typer.colors.RED)
+        typer.echo("Creating a minimal config file instead.")
         default_config_text = f"""\
 [user]
 username = YOUR_USERNAME_HERE
@@ -239,8 +242,8 @@ problems_directory = {constants.DEFAULT_PROBLEMS_DIRECTORY}
 """
 
     CONFIG_PATH.write_text(default_config_text)
-    print(f"Created default configuration file at: {CONFIG_PATH}")
-    print("Edit it with your username and token.")
+    typer.secho(f"Created default configuration file at: {CONFIG_PATH}", fg=typer.colors.GREEN)
+    typer.echo("Edit it with your username and token.")
 
 
 def validate_config(config: KattisConfig) -> list[str]:

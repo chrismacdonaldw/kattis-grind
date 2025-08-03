@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from enum import IntEnum
-from typing import Optional
 import constants
 
 
@@ -30,7 +29,6 @@ class StatusInfo:
     description: str
     is_final: bool
     is_success: bool
-    color_code: Optional[int] = None
 
 
 STATUS_MAP = {
@@ -69,70 +67,60 @@ STATUS_MAP = {
         description="Executing test cases",
         is_final=False,
         is_success=False,
-        color_code=constants.Colors.YELLOW,
     ),
     SubmissionStatus.JUDGE_ERROR: StatusInfo(
         name="Judge Error",
         description="Internal error in the judging system",
         is_final=True,
         is_success=False,
-        color_code=constants.Colors.RED,
     ),
     SubmissionStatus.COMPILE_ERROR: StatusInfo(
         name="Compile Error",
         description="Source code failed to compile",
         is_final=True,
         is_success=False,
-        color_code=constants.Colors.RED,
     ),
     SubmissionStatus.RUNTIME_ERROR: StatusInfo(
         name="Run Time Error",
         description="Program crashed during execution",
         is_final=True,
         is_success=False,
-        color_code=constants.Colors.RED,
     ),
     SubmissionStatus.MEMORY_LIMIT_EXCEEDED: StatusInfo(
         name="Memory Limit Exceeded",
         description="Program used more memory than allowed",
         is_final=True,
         is_success=False,
-        color_code=constants.Colors.RED,
     ),
     SubmissionStatus.OUTPUT_LIMIT_EXCEEDED: StatusInfo(
         name="Output Limit Exceeded",
         description="Program produced too much output",
         is_final=True,
         is_success=False,
-        color_code=constants.Colors.RED,
     ),
     SubmissionStatus.TIME_LIMIT_EXCEEDED: StatusInfo(
         name="Time Limit Exceeded",
         description="Program took too long to execute",
         is_final=True,
         is_success=False,
-        color_code=constants.Colors.RED,
     ),
     SubmissionStatus.ILLEGAL_FUNCTION: StatusInfo(
         name="Illegal Function",
         description="Program used forbidden functions or system calls",
         is_final=True,
         is_success=False,
-        color_code=constants.Colors.RED,
     ),
     SubmissionStatus.WRONG_ANSWER: StatusInfo(
         name="Wrong Answer",
         description="Program output doesn't match expected output",
         is_final=True,
         is_success=False,
-        color_code=constants.Colors.RED,
     ),
     SubmissionStatus.ACCEPTED: StatusInfo(
         name="Accepted",
         description="Solution is correct!",
         is_final=True,
         is_success=True,
-        color_code=constants.Colors.GREEN,
     ),
 }
 
@@ -148,7 +136,6 @@ def get_status_info(status_id: int) -> StatusInfo:
             description=f"Unrecognized status code: {status_id}",
             is_final=True,
             is_success=False,
-            color_code=constants.Colors.RED,
         )
 
 
@@ -165,8 +152,3 @@ def is_successful_status(status_id: int) -> bool:
 def get_status_name(status_id: int) -> str:
     """Get the display name for a status."""
     return get_status_info(status_id).name
-
-
-def get_status_color(status_id: int) -> Optional[int]:
-    """Get the terminal color code for a status."""
-    return get_status_info(status_id).color_code

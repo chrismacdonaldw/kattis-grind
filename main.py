@@ -161,9 +161,6 @@ def get_submission_status(submission_url: str, cookies) -> dict:
     return reply.json()
 
 
-def color(s: str, c: int) -> str:
-    """Add color to terminal output."""
-    return f"\x1b[{c}m{s}\x1b[0m"
 
 
 def show_judgement(submission_url: str, cookies) -> bool:
@@ -182,22 +179,22 @@ def show_judgement(submission_url: str, cookies) -> bool:
                 not status.is_final_status(status_id)
                 and status_id != status.SubmissionStatus.RUNNING
             ):
-                print(f"\r{status_text}...", end="")
+                typer.echo(f"\r{status_text}...", nl=False)
             elif status_id == status.SubmissionStatus.COMPILE_ERROR:
-                print(f"\r{color(status_text, constants.Colors.RED)}", end="")
+                typer.secho(f"\r{status_text}", fg=typer.colors.RED, nl=False)
                 try:
                     root = fragment_fromstring(
                         submission_status["feedback_html"], create_parent=True
                     )
                     error = root.find(".//pre").text
-                    print(color(":", constants.Colors.RED))
-                    print(error, end="")
+                    typer.secho(":", fg=typer.colors.RED)
+                    typer.echo(error, nl=False)
                 except:
                     pass
             else:
-                print("\rTest cases: ", end="")
+                typer.echo("\rTest cases: ", nl=False)
                 if testcases_total == 0:
-                    print("???", end="")
+                    typer.echo("???", nl=False)
                 else:
                     progress = ""
                     for i in re.findall(
@@ -206,24 +203,22 @@ def show_judgement(submission_url: str, cookies) -> bool:
                         if "is-empty" in i:
                             break
                         if "accepted" in i:
-                            progress += color(".", constants.Colors.GREEN)
+                            progress += "."
                         if "rejected" in i:
-                            progress += color("x", constants.Colors.RED)
+                            progress += "x"
 
                     if status_id == status.SubmissionStatus.RUNNING:
-                        progress = progress[: 10 * (testcases_done - 1)] + color(
-                            "?", constants.Colors.YELLOW
-                        )
+                        progress = progress[: 10 * (testcases_done - 1)] + "?"
 
-                    print(
+                    typer.echo(
                         f'[{progress}{" " * (9*testcases_done + testcases_total - len(progress))}] {testcases_done} / {testcases_total}',
-                        end="",
+                        nl=False,
                     )
 
             sys.stdout.flush()
 
             if status.is_final_status(status_id):
-                print()
+                typer.echo()
                 success = status.is_successful_status(status_id)
                 try:
                     root = fragment_fromstring(
@@ -242,11 +237,9 @@ def show_judgement(submission_url: str, cookies) -> bool:
                     pass
 
                 if status_id != status.SubmissionStatus.COMPILE_ERROR:
-                    print(
-                        color(
-                            status_text,
-                            constants.Colors.GREEN if success else constants.Colors.RED,
-                        )
+                    typer.secho(
+                        status_text,
+                        fg=typer.colors.GREEN if success else typer.colors.RED,
                     )
                 return success
 
@@ -645,7 +638,7 @@ def rand(
         raise typer.Exit(code=1)
 
     if id_only:
-        print(chosen_problem.id)
+        typer.echo(chosen_problem.id)
         raise typer.Exit()
 
     typer.secho(

@@ -29,16 +29,6 @@ def get_problems_directory():
     return Path("./kattis_problems")
 
 
-class Colors:
-    RED = 31
-    GREEN = 32
-    YELLOW = 33
-    BLUE = 34
-    MAGENTA = 35
-    CYAN = 36
-    WHITE = 37
-
-
 HEADERS = {
     "User-Agent": "kattis-grind (https://github.com/chrismacdonaldw/kattis-grind)"
 }
